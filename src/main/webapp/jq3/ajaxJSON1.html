@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="../js/code.jquery.com_jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			url:'JSON1.jsp',
+			success:function(data){
+				alert("성공");
+// 				alert(data);
+				console.log(data);
+// 				$('body').append(data); // 출력 안됨=> 객체 자체를 출력 할 수 없음  
+				$('body').append(data.name); // 출력 됨 => 객체 요소는 출력 가능 
+			}
+				
+		});//ajax 끝 
+		
+		// JSON 데이터를 가져오는 메서드 있다!! 
+		$.getJSON("JSON1.jsp",function(data){ // = ajax의 success와 같음 
+			// success 와 같은 역할 
+			alert("성공2");
+			$('body').append(data.name); 
+		});//JSON 끝 
+		
+	}); //JQuery 끝 
+
+	</script>
+</head>
+<body>
+
+	<h1> ajaxJSON1.html </h1>
+	
+	
+
+
+</body>
+</html>

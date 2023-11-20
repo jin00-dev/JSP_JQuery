@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.news1{
+	background-color: pink ;
+	
+
+}
+
+</style>
+
+<script src="../js/code.jquery.com_jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	
+		$.ajax({
+			url:"ajaxXML1.jsp",
+			success:function(data){
+				alert("성공!");
+// 				alert(data);
+// 				console.log(data);
+				
+				// 데이터가 다 들고와지는 것을 확인 했을 때 $(대상).find(값) 를 쓴다
+				// => 대상에 값이 있는지 없는지 찾아주는 것
+				
+				$(data).find('person').each(function(){ // 꺼낼 데이터를 감싸는 태그를 찾아서 그 안에서 데이터를 불러와준다. 
+					var name = $(this).find('name').text();
+					var gender = $(this).find('gender').text();
+					var addr = $(this).find('addr').text();
+					    
+// 					var arry = [name + ", "+ gender +" ," + addr ];
+					
+// 					$('body').append(arry);
+					
+					$('body').append("이름 : "+ name + "성별 : " +gender + "주소 : " + addr+ "<hr>");
+					
+					$('table').append("<tr><td>"+name+"</td><td>"+gender+"</td><td>"+addr+"</td></tr>");
+				}); // xml 코드 안에 person이라는 것이 있으면 각각 function을 실행 할거야. => 
+					// 이렇게 쓴다!! 여기에서 data = 변수 = ajaxXml.jsp의 데이터들
+			}
+		});//ajax 끝 
+
+		$.ajax({
+			url : "https://fs.jtbc.co.kr/RSS/economy.xml",
+			success : function(data){
+// 				alert("성공");
+				$(data).find('item').each(function(){
+					var title = $(this).find("title").text();
+					var link = $(this).find("link").text();
+					
+					$('#news').append("<h3 class = 'news1'><a href="+link+">"+title+"</a><h3>");
+					
+					
+				});
+			}
+		});
+		
+		
+		
+	}); //JQuery 끝 
+</script>
+
+</head>
+<body>
+
+<h1>ajaxXML.html</h1>
+
+<table border="1" class="t1">
+	<tr>
+		<td>이름</td>
+		<td>성별</td>
+		<td>주소</td>
+	</tr>
+</table>
+
+<hr> 
+
+	<h2>JTBC 기사 목록</h2>	
+
+	<div id="news"></div>
+
+</body>
+</html>

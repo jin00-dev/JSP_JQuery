@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/code.jquery.com_jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		// 버튼 클릭시 ajax 실행 
+		$("#btn").click(function(){
+		$.ajax({
+			url : "list2.jsp",
+			data : {"id":$("#id").val()},
+			success : function(data){
+				alert("성공");
+				alert(data);
+				if(data==0){
+					$("div").append("사용불가").css('color','red');
+				}else{
+					$("div").append("사용가능").css('color','blue');
+				}
+			}
+			
+			});//ajax 끝
+		});//click 끝 
+	}); //JQuery 끝 
+	</script>
+</head>
+<body>
+	<h1>ajaxJSON.html</h1>
+	
+	아이디 : <input type="text" name="id" id = "id">
+	<input type="button" id = "btn" value="아이디 체크">
+
+	<div></div>
+
+</body>
+</html>

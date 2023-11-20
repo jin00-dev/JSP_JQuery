@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="../js/code.jquery.com_jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	
+	// ajax()사용 - 비동기 방식 데이터 
+	
+	//$each(대상,function); => 비슷하게 썼던 것..! 
+	//$(대상).each(function);
+	$.ajax({
+	
+		url : "ajaxString1.jsp",
+		// 속성하나가 생략 되어 있어요! 아래의 dataType: html or text
+		dataType : "text",
+		success : function(data){ 
+			// 다녀왔습니다~! 페이지 정보 data 변수에 담아왔어요~! 
+			// 페이지 정보? 화면에 출력되는 정보 
+			alert("다녀왔습니다!");
+// 			$('body').append(data);
+			$('div').append(data);
+			
+		}
+		
+	});//ajax 끝 
+		
+	}); //JQuery 끝 
+</script>
+<style type="text/css">
+div{
+	border : 1px solid black
+}
+</style>
+</head>
+<body>
+	<h1>ajaxString1.html</h1>
+	
+	<div></div>
+	
+</body>
+</html>

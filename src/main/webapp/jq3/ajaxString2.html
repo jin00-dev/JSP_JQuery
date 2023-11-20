@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="../js/code.jquery.com_jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+		url:"ajaxString2.jsp",
+		data: {name:"아이티윌", age:20},
+		success:function(data){
+			alert("성공!");
+			$('#div1').append(data);
+		}		
+	});//ajax 끝 
+	$.ajax({
+		url:"ajaxString2_1.jsp",
+		data: {name:"박여진",age:29},
+		success:function(data){
+			alert("성공!");
+			alert(data);
+			alert(typeof data);
+			var result = data.split(",");  //, 기준으로 나눈다. + 배열로 나누어진다.
+// 			$('#h1').append(result[0]);
+// 			$('#h2').append(result[1]);
+			$("#div2 h2").each(function(idx){
+				$(this).append(result[idx]);
+			});
+			
+		}		
+	});//ajax 끝
+	
+		
+	}); //JQuery 끝 
+
+	</script>
+</head>
+<body>
+
+	<h1>ajaxString2.html</h1>
+
+	<div id = "div1"></div>
+	
+	<hr>
+	
+	<!-- ajaxString2_1.jsp 
+		이름 "ㅇㅇㅇ님"
+		나이 00살
+		형태로 가져올거에요 그리고 아래 #div2에 채울거에요  
+	-->
+	<div id ="div2">
+		<h2>이름 : </h2>
+		<h2>나이 : </h2>
+	
+	</div>
+
+</body>
+</html>

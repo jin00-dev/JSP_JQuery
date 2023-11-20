@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/code.jquery.com_jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+/* 	$.getJSON("주소",funcion(){
+	성공시 실행 동작
+	}); */
+	$.getJSON("JSON2.json",function(data){
+		alert("성공");
+		console.log(data);
+		// 배열정보 => html 테이블로 전달 
+		
+		$.each(data,function(idx,item){
+// 			alert(idx +" / "+ item);// item => Object 로 출력됨 
+// 			console.log(item); // 객체 데이터는 단독으로 출력 해 봐야 함 
+			$('table').append("<tr><td>"+item.name+"</td><td>"+item.age+"</td><td>"+item.test+"</td></tr>")
+			
+		});//each끝
+		
+	});//JSON 끝
+		
+	}); //JQuery 끝 
+
+	</script>
+</head>
+<body>
+	<h1>ajaxJSON2.html</h1>
+	
+	<table border="1">
+		<tr>
+			<td>이름</td>
+			<td>나이</td>
+			<td>test</td>
+		</tr>
+	</table>
+
+</body>
+</html>
